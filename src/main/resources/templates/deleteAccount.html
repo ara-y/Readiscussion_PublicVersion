@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div th:if="${message}">
+	[[${message}]]
+</div>
+
+<form th:action="@{/delete_account}" method=post>
+	<button>アカウント削除のメールを登録しているアドレスへ送信する。</button>
+</form>
+
+</body>
+</html>

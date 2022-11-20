@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/webjars/jquery/jquery.min.js"></script>
+
+</head>
+<body>
+
+<form th:action="@{/createRoom}" th:object="${room}" method=post>
+
+	<input type="text" id="roomName" name="roomName">
+	<input type="date" id="endDiscussion" name="endDiscussion">
+	<input type="checkbox" id="hasPassword" name="hasPassword">
+	<input   id="password" name="password" >
+	<button>送信</button>
+</form>
+
+
+<script src="/discussion/ForCreateRoom.js"></script>
+</body>
+</html>

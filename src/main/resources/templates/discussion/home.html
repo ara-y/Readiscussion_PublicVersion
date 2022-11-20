@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div th:if="${error}">
+[[${error}]]
+</div>
+
+
+<form th:action="@{/logout}" method="post">
+<button>ログアウト</button>
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html　xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form th:action="@{/register_account}" th:object="${user}" method="post">
+
+<input type="text" th:field="*{username}" placeholder="お名前">
+
+<input type="password" th:field="*{password}" placeholder="パスワード">
+
+<input type="email" th:field="*{mail}" placeholder="メール">
+
+<p>2段階認証を希望する場合はチェックを入れてください。<input type="checkbox" th:field="*{isUsing2FA}" value="true"></p>
+
+<button>ログイン</button>
+</form>
+
+<th:if="${message}">
+
+  [[${message}]]
+
+</th:if>
+
+<a th:href="@{/login}">ログイン画面へ戻る</a>
+</body>
+</html>

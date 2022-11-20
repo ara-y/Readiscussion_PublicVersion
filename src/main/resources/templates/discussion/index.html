@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <title>Hello WebSocket</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/discussion/app.js"></script>
+    
+    
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">WebSocket connection:</label>
+                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                   
+                    <input type="text" id="sendMessage" class="form-control" placeholder="メッセージ"> <!-- id = name -->
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+   <!-- logのボーダー -->
+     	<button id="getLog">ログを取得する</button>  
+     	   
+         <div id="logBorder"></div>
+        <table border="1">
+            <tr>
+                <th>ユーザ名</th>
+                <th>内容</th>
+            </tr>
+        </table>
+        
+       <div th:if="${log}">
+        
+            <!-- 過去の履歴はここに表示 -->
+       		<!-- statはステータス変数と呼ばれcountなどを提供する。　|　は変数式を他の文字を同時に扱えるようにするリテラル置換 -->
+         <div th:each="log , stat:${log}">
+                <input th:id="|contributor${stat.count}|"  th:value="${log.user_id}" type=hidden>
+                <input th:id="|MessageLog${stat.count}|"  th:value="${log.message}" type=hidden>
+            </div>
+         
+       </div>
+        
+        <!-- ここにログを追加する -->      
+        <div id="addNewLog">
+        	<div id="upperLimitLog"></div>
+        </div>
+        
+  
+       
+       
+        
+        	
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>部屋名</th>
+                </tr>
+                </thead>
+                <tbody id="message"> <!-- id = greetings -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<p id="id" th:text="${id}"></p>
+
+<!-- 存在しないケースもある  'rparen())' but was 'lcurly({)'は-->
+<div th:if="${log}">
+<div th:if="${page}">
+<input type="hidden" id="currentLogSize" th:value="${log.size}">
+<input id="pageNumber" type="hidden" th:value="${page.number}">
+</div>
+</div>
+
+
+<input type="hidden" id="_csrf" name="_csrf" th:value="${_csrf}">
+<input type="hidden" id="url" th:value="${url}">
+<input type="hidden" id="pageLimit" th:value="${pageLimit}">
+
+<div th:if="${isHost}">
+	<a th:href="@{/topic/sendMessage/__${id}__/roomManagement}">管理画面に移行する</a>
+</div>
+
+<script src="/discussion/getLogAndSubmit.js" defer></script>
+
+
+
+</body>
+</html>

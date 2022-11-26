@@ -8,4 +8,4 @@
 <br>
 2.最適な実装の検討のため、ログイン試行回数によるアカウントロック機能を削除
 <br>
-3.DaoAuthenticationProviderとUserDetailsServiceのテストを追加
+3.認証のテストを追加

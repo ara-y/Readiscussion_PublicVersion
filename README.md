@@ -1,0 +1,3 @@
+# Readiscussion_PublicVersion
+プライベートリポジトリーに保存しているReadiscussionの公開用のリポジトリーです。
+コードのみの掲載となります。

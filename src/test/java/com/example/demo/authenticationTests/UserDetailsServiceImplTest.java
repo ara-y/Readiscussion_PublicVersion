@@ -30,9 +30,9 @@ class UserDetailsServiceImplTest {
 	void whenMailExists_expectToGetUserDetails() {
 		
 		SiteUser user = new SiteUser();
-		user.setMail("edomon2022_11_21@docomo.ne.jpp");
-		user.setPassword("Password123");
-		user.setUsername("エドモンダンテス");
+		user.setMail("掲載のため削除");
+		user.setPassword("掲載のため削除");
+		user.setUsername("掲載のため削除");
 		siteUserRepository.save(user);
 		
 		UserDetails actual = userDetailsServiceImpl.loadUserByUsername("edomon2022_11_21@docomo.ne.jpp");
@@ -43,7 +43,7 @@ class UserDetailsServiceImplTest {
 	@Test
 	@DisplayName("メールが存在しない場合は、例外をスローします。")
 	void whenMailDoesNotExsists_throwException() {
-		//try-catchでRuntimeExceptionを発生させているので、UserNameNotFoundExceptionも発生しているにも関わらず、RuntimeExceptionが発生した事になっている
+		
 		assertThrows(RuntimeException.class, () -> userDetailsServiceImpl.loadUserByUsername("someone_2022@docomo.ne.jpp"));
 		
 	}
